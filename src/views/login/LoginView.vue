@@ -2,7 +2,7 @@
  * @Author: BINGWU
  * @Date: 2024-08-11 16:17:47
  * @LastEditors: hujiacheng hujiacheng@iipcloud.com
- * @LastEditTime: 2024-08-11 17:12:00
+ * @LastEditTime: 2024-08-11 17:30:35
  * @FilePath: \manage-backend\src\views\login\LoginView.vue
  * @Describe: 
  * @Mark: ૮(˶ᵔ ᵕ ᵔ˶)ა
@@ -18,19 +18,11 @@
             <div class="title-text">
               欢迎来到这个界面，您可以通过这个界面登录到系统
             </div>
-            <!-- <div class="other-login" ref="otherLoginRef">
-              <img src="@/assets/QQ.png" alt="">
-              <span>使用QQ登录</span>
-            </div> -->
             <div class="login-form">
-              <input type="text" class="user" placeholder="账号">
-              <input type="password" class="password" placeholder="密码">
+              <input type="text" class="user" placeholder="账号" v-model="form.username">
+              <input type="password" class="password" placeholder="密码" v-model="form.password">
             </div>
-            <button class="login-btn">登 录</button>
-            <!-- <div class="tips">
-              <span>还没有账号?</span>
-              <span>注册</span>
-            </div> -->
+            <button class="login-btn" @click="handleLogin">登 录</button>
           </div>
         </div>
       </div>
@@ -41,13 +33,15 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 import { adminLogin } from '@/apis/admin/index'
+import { useUserStore } from '@/stores/user'
+const userStore = useUserStore()
 const contentRef = ref(null)
+const form = ref({
+  username: '',
+  password: ''
+})
 let flag = 0
 function changeBg() {
-  // if (flag % 2 == 0)
-  //   otherLoginRef.value.style.backgroundColor = 'rgb(248, 182, 217)'
-  // else
-  //   otherLoginRef.value.style.backgroundColor = 'rgb(182, 211, 248)'
   if (flag == 4)
     flag = 1
   else
@@ -55,13 +49,21 @@ function changeBg() {
   contentRef.value.style.background = `url(src/assets/bg${flag}.png) no-repeat`
   return changeBg
 }
+const handleLogin = async () => {
+  try {
+    const res = await adminLogin({
+      username: form.value.username,
+      password: form.value.password
+    })
+    userStore.setUserInfo(res.data.data)
+    console.log('登录成功', userStore.getUserInfo)
+  } catch (error) {
+    console.log(error)
+  }
 
+}
 onMounted(() => {
   setInterval(changeBg(), 5000)
-  adminLogin({
-    username: '张三',
-    password: '123456'
-  })
 })
 </script>
 

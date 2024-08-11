@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { useUserStore } from '@/stores/user'
 const instance = axios.create({
   baseURL: '/api',
   timeout: 10000,
@@ -9,6 +10,11 @@ const instance = axios.create({
 
 // 添加请求拦截器
 instance.interceptors.request.use((config) => {
+  const userStore = useUserStore()
+  const token = userStore.getUserInfo.token
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`
+  }
   // 在发送请求之前做些什么
   return config
 }, (error) => {
