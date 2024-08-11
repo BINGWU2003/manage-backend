@@ -2,7 +2,7 @@
  * @Author: BINGWU
  * @Date: 2024-08-11 16:17:47
  * @LastEditors: hujiacheng hujiacheng@iipcloud.com
- * @LastEditTime: 2024-08-11 16:48:12
+ * @LastEditTime: 2024-08-11 17:12:00
  * @FilePath: \manage-backend\src\views\login\LoginView.vue
  * @Describe: 
  * @Mark: ૮(˶ᵔ ᵕ ᵔ˶)ა
@@ -40,14 +40,14 @@
 
 <script setup>
 import { ref, onMounted } from 'vue'
-const otherLoginRef = ref(null)
+import { adminLogin } from '@/apis/admin/index'
 const contentRef = ref(null)
 let flag = 0
 function changeBg() {
-  if (flag % 2 == 0)
-    otherLoginRef.value.style.backgroundColor = 'rgb(248, 182, 217)'
-  else
-    otherLoginRef.value.style.backgroundColor = 'rgb(182, 211, 248)'
+  // if (flag % 2 == 0)
+  //   otherLoginRef.value.style.backgroundColor = 'rgb(248, 182, 217)'
+  // else
+  //   otherLoginRef.value.style.backgroundColor = 'rgb(182, 211, 248)'
   if (flag == 4)
     flag = 1
   else
@@ -57,9 +57,11 @@ function changeBg() {
 }
 
 onMounted(() => {
-  console.log(otherLoginRef.value)
   setInterval(changeBg(), 5000)
-
+  adminLogin({
+    username: '张三',
+    password: '123456'
+  })
 })
 </script>
 

@@ -2,7 +2,7 @@
  * @Author: BINGWU
  * @Date: 2024-08-03 18:51:22
  * @LastEditors: hujiacheng hujiacheng@iipcloud.com
- * @LastEditTime: 2024-08-11 16:21:53
+ * @LastEditTime: 2024-08-11 17:09:33
  * @FilePath: \manage-backend\vite.config.js
  * @Describe: 
  * @Mark: ૮(˶ᵔ ᵕ ᵔ˶)ა
@@ -28,6 +28,15 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
+    }
+  },
+  server: {
+    proxy: {
+      '/api': {
+        target: 'https://lenient-new-ghoul.ngrok-free.app', // 目标服务器
+        changeOrigin: true, // 是否改变源
+        rewrite: (path) => path.replace(/^\/api/, '') // 重写路径
+      }
     }
   }
 })
