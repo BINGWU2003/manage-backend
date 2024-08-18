@@ -17,6 +17,10 @@
         <el-icon><icon-menu /></el-icon>
         <template #title>药品管理</template>
       </el-menu-item>
+      <el-menu-item index="/test">
+        <el-icon><icon-menu /></el-icon>
+        <template #title>测试</template>
+      </el-menu-item>
     </el-menu>
   </div>
 </template>
