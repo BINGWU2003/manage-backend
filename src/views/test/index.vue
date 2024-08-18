@@ -28,7 +28,7 @@ onMounted(() => {
     "images": "string",
     "password": "123456",
     "permissions": -2147483648,
-    "phone": "string",
+    "phone": "strin1g",
     "status": -2147483648,
     "username": "string",
     "adminId": 1,
