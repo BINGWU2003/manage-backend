@@ -2,7 +2,7 @@
  * @Author: BINGWU
  * @Date: 2024-08-11 16:17:47
  * @LastEditors: hujiacheng hujiacheng@iipcloud.com
- * @LastEditTime: 2024-08-18 19:10:19
+ * @LastEditTime: 2024-08-18 20:28:08
  * @FilePath: \manage-backend\src\views\login\index.vue
  * @Describe: 
  * @Mark: ૮(˶ᵔ ᵕ ᵔ˶)ა
@@ -10,7 +10,7 @@
 <template>
   <div class="login">
     <div class="box">
-      <div class="content" ref="contentRef">
+      <div class="content" ref="contentRef" :style="backgroundStyle">
         <div class="login-wrapper">
           <div class="mask"></div>
           <div class="login-content">
@@ -32,27 +32,30 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, computed, onUnmounted } from 'vue'
 import { adminLogin } from '@/apis/admin/index'
 import { useUserStore } from '@/stores/user'
 import { useRouter } from 'vue-router'
+import bg1 from '@/assets/images/bg1.png'
+import bg2 from '@/assets/images/bg2.png'
+import bg3 from '@/assets/images/bg3.png'
+import bg4 from '@/assets/images/bg4.png'
 const router = useRouter()
 const userStore = useUserStore()
 const contentRef = ref(null)
+const bgList = [bg1, bg2, bg3, bg4]
 const form = ref({
   username: '',
   password: ''
 })
-let flag = 0
-function changeBg() {
-  if (flag == 4)
-    flag = 1
-  else
-    flag++
-  contentRef.value.style.background = `url(src/assets/bg${flag}.png) no-repeat`
-  return changeBg
-}
+const currentIndex = ref(0)
+const currentBg = computed(() => bgList[currentIndex.value])
+let timer = null
+const backgroundStyle = computed(() => ({
+  backgroundImage: `url(${currentBg.value})`,
+}))
 const handleClick = () => {
+
   router.push('/test')
 }
 const handleLogin = async () => {
@@ -69,7 +72,12 @@ const handleLogin = async () => {
 
 }
 onMounted(() => {
-  setInterval(changeBg(), 5000)
+  timer = setInterval(() => {
+    currentIndex.value = (currentIndex.value + 1) % bgList.length
+  }, 5000)
+})
+onUnmounted(() => {
+  clearInterval(timer)
 })
 </script>
 
