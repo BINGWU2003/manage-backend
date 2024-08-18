@@ -5,7 +5,7 @@ const router = createRouter({
   routes: [
     {
       path: '/',
-      redirect: '/login',
+      redirect: '/dashboard',
       component: () => import('../layout/index.vue'),
       children: [
         {

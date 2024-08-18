@@ -2,8 +2,8 @@
  * @Author: BINGWU
  * @Date: 2024-08-11 16:17:47
  * @LastEditors: hujiacheng hujiacheng@iipcloud.com
- * @LastEditTime: 2024-08-11 17:30:35
- * @FilePath: \manage-backend\src\views\login\LoginView.vue
+ * @LastEditTime: 2024-08-18 19:10:19
+ * @FilePath: \manage-backend\src\views\login\index.vue
  * @Describe: 
  * @Mark: ૮(˶ᵔ ᵕ ᵔ˶)ა
 -->
@@ -15,6 +15,7 @@
           <div class="mask"></div>
           <div class="login-content">
             <h1>登 录</h1>
+            <el-button color="#626aef" @click="handleClick">去测试页面</el-button>
             <div class="title-text">
               欢迎来到这个界面，您可以通过这个界面登录到系统
             </div>
@@ -34,6 +35,8 @@
 import { ref, onMounted } from 'vue'
 import { adminLogin } from '@/apis/admin/index'
 import { useUserStore } from '@/stores/user'
+import { useRouter } from 'vue-router'
+const router = useRouter()
 const userStore = useUserStore()
 const contentRef = ref(null)
 const form = ref({
@@ -49,6 +52,9 @@ function changeBg() {
   contentRef.value.style.background = `url(src/assets/bg${flag}.png) no-repeat`
   return changeBg
 }
+const handleClick = () => {
+  router.push('/test')
+}
 const handleLogin = async () => {
   try {
     const res = await adminLogin({
@@ -56,7 +62,7 @@ const handleLogin = async () => {
       password: form.value.password
     })
     userStore.setUserInfo(res.data.data)
-    console.log('登录成功', userStore.getUserInfo)
+    router.push('/dashboard')
   } catch (error) {
     console.log(error)
   }

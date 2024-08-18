@@ -10,11 +10,17 @@
 <template>
   <div>
     <h1>测试</h1>
+    <el-button @click="handleClick" type="primary">去登陆页面</el-button>
   </div>
 </template>
 
 <script setup>
 import { onMounted } from 'vue'
+import { useRouter } from 'vue-router'
+const router = useRouter()
+const handleClick = () => {
+  router.push('/login')
+}
 onMounted(() => {
   console.log('测试页面')
 })
