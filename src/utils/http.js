@@ -13,7 +13,7 @@ instance.interceptors.request.use((config) => {
   const userStore = useUserStore()
   const token = userStore.getUserInfo?.token
   if (token) {
-    config.headers.Authorization = `Bearer ${token}`
+    config.headers.token = `${token}`
   }
   // 在发送请求之前做些什么
   return config

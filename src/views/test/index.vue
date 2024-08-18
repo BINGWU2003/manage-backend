@@ -17,12 +17,18 @@
 <script setup>
 import { onMounted } from 'vue'
 import { useRouter } from 'vue-router'
+import { getUserById } from '@/apis/user'
 const router = useRouter()
 const handleClick = () => {
   router.push('/login')
 }
 onMounted(() => {
   console.log('测试页面')
+  getUserById(1).then(res => {
+    console.log('响应结果', res)
+  }).catch(err => {
+    console.log('响应失败', err)
+  })
 })
 </script>
 
