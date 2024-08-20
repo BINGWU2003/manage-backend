@@ -17,33 +17,34 @@
 <script setup>
 import { onMounted } from 'vue'
 import { useRouter } from 'vue-router'
-import { getUserById } from '@/apis/user'
+ import { review,Checkapplications,Checknotapplications,disableaccounts,Querypermissions,adminLogin,Addedadministrators,QueryadministratorID,
+ Editadmininformation,Signout,    
+ } from '@/apis/admin'
+ //import {     changeuserinformation
+ //} from '@/apis/user'
+
+ // import {  Drugdiscontinued
+ //} from '@/apis/drug'
 const router = useRouter()
 // 张三 123456
 const handleClick = () => {
   router.push('/login')
 }
 onMounted(() => {
-  const jsonString = `{
-    "images": "string",
-    "password": "123456",
-    "permissions": -2147483648,
-    "phone": "strin1g",
-    "status": -2147483648,
-    "username": "string",
-    "adminId": 1,
-    "adminName": "string",
-    "createBy": -2147483648,
-    "createTime": "2019-08-24T14:15:22Z",
-    "updateBy": -2147483648,
-    "updateTime": "2019-08-24T14:15:22Z"
-  }`;
+  
+  const params = `{
+    
+    "adminId":4,
+    "status":1
 
-  const jsObject = JSON.parse(jsonString);
-  console.log(jsObject);
 
-  console.log('测试页面')
-  getUserById(1).then(res => {
+}`;
+
+
+ 
+ 
+ //const jsObject = JSON.parse(params);
+  QueryadministratorID( 4 ).then(res => {
     console.log('响应结果', res)
   }).catch(err => {
     console.log('响应失败', err)
