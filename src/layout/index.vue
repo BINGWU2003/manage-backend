@@ -1,3 +1,12 @@
+<!--
+ * @Author: BINGWU
+ * @Date: 2024-08-18 18:43:04
+ * @LastEditors: hujiacheng hujiacheng@iipcloud.com
+ * @LastEditTime: 2024-08-21 23:32:17
+ * @FilePath: \manage-backend\src\layout\index.vue
+ * @Describe: 
+ * @Mark: ૮(˶ᵔ ᵕ ᵔ˶)ა
+-->
 <template>
   <div class="layout">
     <Aside />
@@ -19,7 +28,7 @@ import Aside from '@/layout/aside/index.vue'
   .main {
     flex: 1;
     overflow: auto;
-    padding: 20px;
+    padding: 40px;
   }
 }
 </style>
