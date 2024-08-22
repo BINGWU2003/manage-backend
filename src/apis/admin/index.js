@@ -1,3 +1,12 @@
+/*
+ * @Author: BINGWU
+ * @Date: 2024-08-11 16:58:15
+ * @LastEditors: hujiacheng hujiacheng@iipcloud.com
+ * @LastEditTime: 2024-08-22 22:21:25
+ * @FilePath: \manage-backend\src\apis\admin\index.js
+ * @Describe: 
+ * @Mark: ૮(˶ᵔ ᵕ ᵔ˶)ა
+ */
 import http from '@/utils/http'
 //审核通过用户提交的入驻申请
 export const review = (params) => {
@@ -12,12 +21,14 @@ export const Checknotapplications = (params) => {
   return http.put('/admin/admin/lose', params)
 }
 //启用、禁用管理员账号
- export const disableaccounts = (params) => {
- return http.post(`/admin/admin/status`, params)
- }
+export const disableaccounts = (params) => {
+  return http.post(`/admin/admin/status`, params)
+}
 //根据权限分页查询管理员
 export const Querypermissions = (params) => {
-  return http.get('/admin/admin/page', params)
+  return http.get('/admin/admin/page', {
+    params
+  })
 }
 //管理员登录
 export const adminLogin = (params) => {
@@ -40,21 +51,3 @@ export const Signout = (params) => {
   return http.post('/admin/admin/logout', params)
 }
 
-
-
-/*
-// 参数在url里的
-export const checkapply1 = (id) => {
-  return http.get(`/admin/admin/${id}`)
-}
-// query参数
-export const checkapply2 = (params) => {
-  return http.get('/admin/admin/page',{
-    params
-  })
-}
-// get请求没有参数
-export const checkapply3 = () => {
-  return http.get('/admin/admin/doctor')
-}
-*/
