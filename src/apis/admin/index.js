@@ -36,7 +36,7 @@ export const adminLogin = (params) => {
 }
 //新增管理员
 export const Addedadministrators = (params) => {
-  return http.post('/admin/admin/login', params)
+  return http.post('/admin/admin', params)
 }
 //根据id查询管理员
 export const QueryadministratorID = (id) => {
