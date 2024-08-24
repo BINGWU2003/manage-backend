@@ -1,3 +1,12 @@
+<!--
+ * @Author: BINGWU
+ * @Date: 2024-08-24 13:42:05
+ * @LastEditors: hujiacheng hujiacheng@iipcloud.com
+ * @LastEditTime: 2024-08-24 15:18:08
+ * @FilePath: \manage-backend\src\views\dashboard\index.vue
+ * @Describe: 
+ * @Mark: ૮(˶ᵔ ᵕ ᵔ˶)ა
+-->
 <template>
   <div>
     dashboard

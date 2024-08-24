@@ -17,14 +17,21 @@
 </template>
 
 <script setup>
+import { websocket } from '@/utils/websocket'
 import { RouterView } from 'vue-router'
 import Aside from '@/layout/aside/index.vue'
+import { onUnmounted } from 'vue'
+const ws = websocket()
+onUnmounted(() => {
+  ws.close()
+})
 </script>
 
 <style lang="scss" scoped>
 .layout {
   display: flex;
   height: 100%;
+
   .main {
     flex: 1;
     overflow: auto;
